@@ -19,9 +19,23 @@ public class UsuarioController {
 		this.usuarioService = usuarioServ;
 	}
 	
-	@RequestMapping(value="/usuarioAdd", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Usuarios> cadastrar(@RequestBody Usuarios usuario){
+	@RequestMapping(value="/cadastrarUsuario", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Usuarios> cadastrarUsuario(@RequestBody Usuarios usuario){
 		Usuarios usuarioCadastrado = usuarioService.salvar(usuario);
 		return new ResponseEntity<>(usuarioCadastrado, HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value="/editarUsuario", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Usuarios> editarUsuario(@RequestBody Usuarios usuario){
+		Usuarios usuarioEditado = usuarioService.salvar(usuario);
+		return new ResponseEntity<>(usuarioEditado, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Usuarios> login(@RequestBody Usuarios usuario){
+		Usuarios usuarioEditado = usuarioService.salvar(usuario);
+		return new ResponseEntity<>(usuarioEditado, HttpStatus.CREATED);
+	}
+	
+	
 }
