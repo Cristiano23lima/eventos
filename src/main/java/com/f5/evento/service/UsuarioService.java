@@ -16,7 +16,5 @@ public class UsuarioService {
 		return usuarioRep.save(usuario);
 	}
 	
-	public void excluir(Usuarios usuario) {
-		usuarioRep.delete(usuario);
-	}
+	
 }
