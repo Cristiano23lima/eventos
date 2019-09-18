@@ -1,9 +1,13 @@
 package com.f5.evento.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,13 +15,33 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 public class Usuarios implements UserDetails{
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	private String email;
+	
 	private String nome;
+	
 	private String senha;
+	
+	@ManyToMany
+	@JoinTable(name= "usuarios_roles" , joinColumns = @JoinColumn(
+		name = "id_usuario" , referencedColumnName = "email"),
+		inverseJoinColumns = @JoinColumn(
+			name = "id_role", referencedColumnName = "nomeRole"
+		)
+	)
+	private List<Role> roles;
+	
 	
 	public String getNome() {
 		return nome;
+	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -36,8 +60,7 @@ public class Usuarios implements UserDetails{
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Collection<? extends GrantedAuthority>) this.roles;
 	}
 	@Override
 	public String getPassword() {

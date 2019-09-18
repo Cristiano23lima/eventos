@@ -1,5 +1,8 @@
 package com.f5.evento.security;
 
+import javax.transaction.Transactional;
+
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,6 +12,7 @@ import com.f5.evento.model.Usuarios;
 import com.f5.evento.repository.UsuarioRepository;
 
 @Repository
+@Transactional
 public class ImplementsUserDetailsService implements UserDetailsService{
 		
 	private UsuarioRepository usuarioRepository;
@@ -24,7 +28,7 @@ public class ImplementsUserDetailsService implements UserDetailsService{
 			throw new UsernameNotFoundException("Usuário não encontrado");
 		}
 		
-		return usuario;
+		return new User(usuario.getUsername(), usuario.getPassword(), true, true, true, true, usuario.getAuthorities());
 	}
 
 }
