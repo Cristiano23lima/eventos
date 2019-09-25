@@ -16,5 +16,4 @@ public class UsuarioService {
 		return usuarioRep.save(usuario);
 	}
 	
-	
 }

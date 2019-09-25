@@ -13,7 +13,7 @@ import com.f5.evento.model.Usuarios;
 import com.f5.evento.service.UsuarioService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioController {
 
 	private UsuarioService usuarioService;
