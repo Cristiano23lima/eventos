@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.f5.evento.model.Cliente;
 import com.f5.evento.service.ClienteService;
 
+@CrossOrigin(origins = "*")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/cliente/")
 public class ClienteController {
 	
 	private ClienteService clienteService;

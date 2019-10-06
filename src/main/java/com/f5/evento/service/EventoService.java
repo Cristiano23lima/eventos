@@ -19,8 +19,8 @@ public class EventoService {
 		return eventoRep.save(evento);
 	}
 	
-	public void excluir(Eventos evento) {//excluir o dados do evento(imcompleto pois falta a exclusao das relações)
-		eventoRep.delete(evento);
+	public void excluir(Long id) {//excluir o dados do evento(imcompleto pois falta a exclusao das relações)
+		eventoRep.deleteById(id);
 	}
 	
 	public List<Eventos> buscarEventos(){

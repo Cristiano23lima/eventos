@@ -32,6 +32,7 @@ public class Eventos implements Serializable{
 	
 	private String titulo;
 	private String descricao;
+	private String endImagem;
 	private Date data;
 	
 	public long getId() {
@@ -40,28 +41,39 @@ public class Eventos implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public Usuarios getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuarios usuario) {
 		this.usuario = usuario;
 	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 	public Date getData() {
 		return data;
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	
+	public String getEndImagem() {
+		return endImagem;
+	}
+	public void setEndImagem(String imagem) {
+		this.endImagem = imagem;
 	}
 }
