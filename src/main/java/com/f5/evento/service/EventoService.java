@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.f5.evento.config.CloudinaryConfig;
 import com.f5.evento.model.Eventos;
 import com.f5.evento.repository.EventoRepository;
 
@@ -11,8 +12,10 @@ import com.f5.evento.repository.EventoRepository;
 public class EventoService {
 	
 	EventoRepository eventoRep;
-	public EventoService(EventoRepository eventoRep) {
+	CloudinaryConfig cdn;
+	public EventoService(EventoRepository eventoRep, CloudinaryConfig CDN) {
 		this.eventoRep = eventoRep;
+		this.cdn = CDN;
 	}
 	
 	public Eventos salvar(Eventos evento) {//cadastra e alterar os dados

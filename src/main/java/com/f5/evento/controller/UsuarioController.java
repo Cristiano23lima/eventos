@@ -32,10 +32,4 @@ public class UsuarioController {
 		Usuarios usuarioEditado = usuarioService.salvar(usuario);
 		return new ResponseEntity<>(usuarioEditado, HttpStatus.CREATED);
 	}
-	
-	//@RequestMapping(value="/deletarUsuario/{id}", method=RequestMethod.DELETE)
-	//public ResponseEntity<Usuarios> excluirConta(@PathVariable long id){
-		//usuarioService.excluir(id);
-		//return new ResponseEntity<>(HttpStatus.OK);
-	//}	
 }

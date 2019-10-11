@@ -3,8 +3,6 @@ package com.f5.evento.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-import com.f5.evento.model.Usuarios;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,6 +17,8 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 public class Eventos implements Serializable{
 	
+	public Eventos() {}
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -26,10 +26,11 @@ public class Eventos implements Serializable{
 	private long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id_usuario", insertable=false, updatable = false)
+	@JoinColumn(name="id_usuario", referencedColumnName = "email")
 	@Fetch(FetchMode.JOIN)
-	private Usuarios usuario;
+	private Usuarios usuario;//id do usuario
 	
+
 	private String titulo;
 	private String descricao;
 	private String endImagem;

@@ -8,16 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 public class Usuarios implements UserDetails{
-	
+
+	public Usuarios() {}
+
 	private static final long serialVersionUID = 1L;
 	
-	@Id
+	
+	@Id	
 	private String email;
 	
 	private String nome;
@@ -33,60 +37,82 @@ public class Usuarios implements UserDetails{
 	)
 	private List<Role> roles;
 	
+	@OneToMany
+	private List<Eventos> eventos; 
 	
+	
+	public List<Eventos> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Eventos> eventos) {
+		this.eventos = eventos;
+	}
+
 	public String getNome() {
 		return nome;
 	}
+	
 	public List<Role> getRoles() {
 		return roles;
 	}
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getSenha() {
 		return senha;
 	}
+	
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return (Collection<? extends GrantedAuthority>) this.roles;
 	}
+	
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return this.senha;
 	}
+	
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return this.email;
 	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub

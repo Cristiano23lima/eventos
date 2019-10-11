@@ -14,6 +14,5 @@ public class UsuarioService {
 	
 	public Usuarios salvar(Usuarios usuario) {
 		return usuarioRep.save(usuario);
-	}
-	
+	}	
 }
