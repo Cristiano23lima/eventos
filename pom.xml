@@ -95,6 +95,11 @@
 		    <version>5.4.4.Final</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
+			<version>5.2.10.Final</version>
+		</dependency>
+		<dependency>
 		    <groupId>org.javassist</groupId>
 		    <artifactId>javassist</artifactId>
 		    <version>3.20.0-GA</version>

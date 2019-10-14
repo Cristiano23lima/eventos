@@ -1,7 +1,5 @@
 package com.f5.evento.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +18,6 @@ import com.f5.evento.model.Eventos;
 import com.f5.evento.model.Usuarios;
 import com.f5.evento.repository.UsuarioRepository;
 import com.f5.evento.service.EventoService;
-import com.f5.evento.service.UploadService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -44,10 +41,21 @@ public class EventosController {
 		return new ResponseEntity<>(eventoService.salvar(evento), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/listEvento", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/listEvento", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<List<Eventos>> listaEvento(){
+	public ResponseEntity<Iterable<Eventos>> listaEvento(){
 		return new ResponseEntity<>(eventoService.buscarEventos(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/listEventoUsuario/{email}", method = RequestMethod.GET)
+	public ResponseEntity<Iterable<Eventos>> listaEventoUsuario(@PathVariable("email") String email){
+		Usuarios usuario = usuarioRepository.findByEmail(email);
+		
+		//busca os eventos pelo usuario
+		Iterable<Eventos> eventos = eventoService.buscarEventosUsuario(usuario);
+		
+		//retorna msg de sucesso
+		return new ResponseEntity<>(eventos, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/editEvento", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -55,8 +63,8 @@ public class EventosController {
 		return new ResponseEntity<>(eventoService.salvar(evento), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/deleteEvento", method = RequestMethod.DELETE)
-	public ResponseEntity<Eventos> deleteEvento(@PathVariable Long id){
+	@RequestMapping(value = "/deleteEvento/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Eventos> deleteEvento(@PathVariable("id") Long id){
 		eventoService.excluir(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

@@ -1,7 +1,8 @@
 package com.f5.evento.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,10 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Eventos implements Serializable{
@@ -30,17 +35,43 @@ public class Eventos implements Serializable{
 	@Fetch(FetchMode.JOIN)
 	private Usuarios usuario;//id do usuario
 	
-
 	private String titulo;
+	
+	@Lob
 	private String descricao;
+	
+	private String local;
+	
 	private String endImagem;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
 	private Date data;
+	
+	@CreationTimestamp
+	private Date createdAt;
+	
+	@UpdateTimestamp
+	private Date updatedAt;
 	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	public Usuarios getUsuario() {
@@ -76,5 +107,12 @@ public class Eventos implements Serializable{
 	}
 	public void setEndImagem(String imagem) {
 		this.endImagem = imagem;
+	}
+	
+	public String getLocal() {
+		return local;
+	}
+	public void setCep(String local) {
+		this.local = local;
 	}
 }

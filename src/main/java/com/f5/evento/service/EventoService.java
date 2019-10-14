@@ -1,11 +1,15 @@
 package com.f5.evento.service;
 
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.f5.evento.config.CloudinaryConfig;
 import com.f5.evento.model.Eventos;
+import com.f5.evento.model.Usuarios;
 import com.f5.evento.repository.EventoRepository;
 
 @Service
@@ -26,7 +30,11 @@ public class EventoService {
 		eventoRep.deleteById(id);
 	}
 	
-	public List<Eventos> buscarEventos(){
-		return (List<Eventos>) eventoRep.findAll();
+	public Iterable<Eventos> buscarEventos(){
+		return (Iterable<Eventos>) eventoRep.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+	}
+	
+	public Iterable<Eventos> buscarEventosUsuario(Usuarios usuario){
+		return (Iterable<Eventos>) eventoRep.findByUsuario(usuario);
 	}
 }
