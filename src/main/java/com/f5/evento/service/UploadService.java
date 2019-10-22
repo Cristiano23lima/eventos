@@ -1,18 +1,18 @@
 package com.f5.evento.service;
 
-import java.io.IOException;
+/*import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartFile;*/
 
-@Component
+//@Component
 public class UploadService {
 	
-	@Value("${diretorio.raiz}")
+	/*@Value("${diretorio.raiz}")
 	private String raiz;
 	
 	@Value("${diretorio.fotos}")
@@ -34,6 +34,6 @@ public class UploadService {
 			throw new RuntimeException("Houve um problema ao tentar salvar o arquivo "+e);
 		}
 		
-	}
+	}*/
 
 }

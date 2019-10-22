@@ -1,10 +1,8 @@
 package com.f5.evento.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.f5.evento.config.CloudinaryConfig;
@@ -17,9 +15,11 @@ public class EventoService {
 	
 	EventoRepository eventoRep;
 	CloudinaryConfig cdn;
-	public EventoService(EventoRepository eventoRep, CloudinaryConfig CDN) {
+	AlternativeService alternative;
+	public EventoService(EventoRepository eventoRep, CloudinaryConfig CDN, AlternativeService as) {
 		this.eventoRep = eventoRep;
 		this.cdn = CDN;
+		this.alternative = as;
 	}
 	
 	public Eventos salvar(Eventos evento) {//cadastra e alterar os dados
@@ -30,11 +30,15 @@ public class EventoService {
 		eventoRep.deleteById(id);
 	}
 	
-	public Iterable<Eventos> buscarEventos(){
+	public Iterable<Eventos> buscarEventos(){		
 		return (Iterable<Eventos>) eventoRep.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
 	}
 	
 	public Iterable<Eventos> buscarEventosUsuario(Usuarios usuario){
 		return (Iterable<Eventos>) eventoRep.findByUsuario(usuario);
+	}
+	
+	public Optional<Eventos> buscarEventoId(Long id){
+		return eventoRep.findById(id);
 	}
 }

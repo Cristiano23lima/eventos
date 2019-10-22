@@ -1,5 +1,7 @@
 package com.f5.evento.controller;
 
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -67,5 +69,10 @@ public class EventosController {
 	public ResponseEntity<Eventos> deleteEvento(@PathVariable("id") Long id){
 		eventoService.excluir(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/buscaEvento/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Optional<Eventos>> buscarEventoId(@PathVariable("id") Long id){
+		return new ResponseEntity<>(eventoService.buscarEventoId(id), HttpStatus.OK);
 	}
 }
