@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
-import org.cloudinary.*;
 
 @Service
 public class CloudinaryConfig {
