@@ -18,7 +18,6 @@ import com.f5.evento.service.ClienteService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/cliente/")
 public class ClienteController {
 	
 	private ClienteService clienteService;
