@@ -29,3 +29,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### IMAGES ###
+*.png
+*.jpeg
+*.gif
+*.icon
